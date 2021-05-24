@@ -1,5 +1,4 @@
-import TableRow from '@material-ui/core/TableRow';
-import TableCell from '@material-ui/core/TableCell';
+import {TableRow, TableCell} from '@material-ui/core';
 
 const Customer = (props) => {
   const {id, image, name, birthday, gender, job} = props;
