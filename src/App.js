@@ -1,3 +1,4 @@
+import { Table, TableHead, TableBody, TableRow, TableCell } from '@material-ui/core';
 import Customer from './components/Customer';
 import './App.css';
 
@@ -15,7 +16,7 @@ const customers = [
     name: '이몽룡',
     birthday: '880910',
     gender: '남자',
-    job: '대학생',
+    job: '한량',
   }, {
     id: 3,
     image: 'https://placeimg.com/64/64/3',
@@ -28,11 +29,21 @@ const customers = [
 
 const App = () => {  
   return (
-    <div>
-      {
-        customers.map(customer => <Customer key={customer.id} {...customer} />)
-      }
-    </div>
+    <Table>
+      <TableHead>
+        <TableRow>
+          <TableCell>Id</TableCell>
+          <TableCell>Profile</TableCell>
+          <TableCell>Name</TableCell>
+          <TableCell>Birthday</TableCell>
+          <TableCell>Gender</TableCell>
+          <TableCell>Job</TableCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        { customers.map(customer => <Customer key={customer.id} {...customer} />) }
+      </TableBody>
+    </Table>
       
   )
 }

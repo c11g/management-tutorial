@@ -1,11 +1,14 @@
+import TableRow from '@material-ui/core/TableRow';
+import TableCell from '@material-ui/core/TableCell';
+
 const Customer = (props) => {
   const {id, image, name, birthday, gender, job} = props;
 
   return (
-    <div>
+    <TableRow>
       <CustomerProfile id={id} image={image} name={name} />
       <CustomerInfo birthday={birthday} gender={gender} job={job} />
-    </div>
+    </TableRow>
   );
 }
 
@@ -13,10 +16,11 @@ const CustomerProfile = (props) => {
   const {id, image, name} = props;
 
   return (
-    <div>
-      <img src={image} alt="" />
-      <strong>{name}({id})</strong>
-    </div>
+    <>
+      <TableCell>{id}</TableCell>
+      <TableCell><img src={image} alt="" /></TableCell>
+      <TableCell><strong>{name}</strong></TableCell>
+    </>
   );
 }
 
@@ -24,11 +28,11 @@ const CustomerInfo = (props) => {
   const {birthday, gender, job} = props;
 
   return (
-    <div>
-      <span>{birthday}</span>
-      <span>{gender}</span>
-      <span>{job}</span>
-    </div>
+    <>
+      <TableCell>{birthday}</TableCell>
+      <TableCell>{gender}</TableCell>
+      <TableCell>{job}</TableCell>
+    </>
   );
 }
 
