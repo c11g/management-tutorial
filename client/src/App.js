@@ -1,33 +1,21 @@
+import { useEffect, useState } from 'react';
 import { Table, TableHead, TableBody, TableRow, TableCell } from '@material-ui/core';
 import Customer from './components/Customer';
 import style from './App.module.css';
 
-const customers = [
-  {
-    id: 1,
-    image: 'https://placeimg.com/64/64/1',
-    name: '홍길동',
-    birthday: '961222',
-    gender: '남자',
-    job: '대학생',
-  }, {
-    id: 2,
-    image: 'https://placeimg.com/64/64/2',
-    name: '이몽룡',
-    birthday: '880910',
-    gender: '남자',
-    job: '한량',
-  }, {
-    id: 3,
-    image: 'https://placeimg.com/64/64/3',
-    name: '성춘향',
-    birthday: '840329',
-    gender: '여자',
-    job: '주부',
-  }
-]
+const App = () => {
+  const [customers, setCustomer] = useState([]);
+  useEffect(() => {
+    callApi()
+      .then(res => setCustomer(res))
+      .catch(err => console.log(err));
+  }, []);
 
-const App = () => {  
+  const callApi = async () => {
+    const response = await fetch('/api/customers');
+    return response.json();
+  }
+
   return (
     <div className={style.root}>
       <Table className={style.table}>
@@ -42,7 +30,10 @@ const App = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          { customers.map(customer => <Customer key={customer.id} {...customer} />) }
+          { customers.length > 1
+            ? customers.map(customer => <Customer key={customer.id} {...customer} />)
+            : console.log("empty")
+          }
         </TableBody>
       </Table>
     </div>
